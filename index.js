@@ -13,6 +13,7 @@ function setTime(hours, minutes, seconds){
 
 setInterval(()=>{
     date.setSeconds(date.getSeconds()+1);
+    console.log("yes : " + process.env.PORT);
     const time = {
         hour: date.getHours(),
         minutes: date.getMinutes(),
