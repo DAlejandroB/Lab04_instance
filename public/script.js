@@ -1,5 +1,5 @@
 const socket = io();
-
+const port;
 function showTime(date){
     var h = date.hour; // 0 - 23
     var m = date.minutes; // 0 - 59
@@ -14,6 +14,9 @@ function showTime(date){
     document.getElementById("clock-display").textContent = time;
     
 }
+socket.on("port", (arg)=>{
+    port = arg;
+});
 socket.on("time", (arg) =>{
     showTime(arg);
 });
