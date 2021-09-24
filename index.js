@@ -22,11 +22,11 @@ setInterval(()=>{
 },1000);
 
 const server=  app.listen(port, ()=>{
-    console.log(`App is listening at port ${port}`)
     let hours = parseInt(getRandomArbitrary(0,24))
     let minutes = parseInt(getRandomArbitrary(0,60))
     let seconds = parseInt(getRandomArbitrary(0,60))
     io.emit("port", port);
+    console.log(`App is listening at port ${port}`)
     setTime(hours,minutes,seconds)
 });
 
