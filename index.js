@@ -27,6 +27,7 @@ const server=  app.listen(port, ()=>{
     let seconds = parseInt(getRandomArbitrary(0,60))
     io.emit("port", port);
     console.log(`App is listening at port ${port}`)
+    console.log("Achieved")
     setTime(hours,minutes,seconds)
 });
 
