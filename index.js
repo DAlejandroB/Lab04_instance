@@ -25,7 +25,6 @@ const server=  app.listen(port, ()=>{
     let hours = parseInt(getRandomArbitrary(0,24))
     let minutes = parseInt(getRandomArbitrary(0,60))
     let seconds = parseInt(getRandomArbitrary(0,60))
-    io.emit("port", port);
     console.log(`App is listening at port ${port}`)
     console.log("Achieved")
     setTime(hours,minutes,seconds)
@@ -42,6 +41,7 @@ app.post('/timechange',(req, res) =>{
 });
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')
+    io.emit("port", port);
 });
 
 app.post('/currentTime',(req,res)=>{
