@@ -1,5 +1,4 @@
 const socket = io();
-const port;
 function showTime(date){
     var h = date.hour; // 0 - 23
     var m = date.minutes; // 0 - 59
@@ -14,7 +13,9 @@ function showTime(date){
     document.getElementById("clock-display").textContent = time;
     
 }
+let port = 0000;
 socket.on("port", (arg)=>{
+    console.log("setting port");
     port = arg;
 });
 socket.on("time", (arg) =>{
@@ -30,7 +31,7 @@ document.getElementById("submit-time").addEventListener("click", function(){
 });
 function timechange(time){
     $.ajax({
-        url:'http://localhost:4000/timechange',
+        url:`http://localhost:${port}/timechange`,
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(time)

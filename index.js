@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 app.use(express.json());
-const port = process.env.PORT;
+const port = 5555;
 
 date = new Date();
 function setTime(hours, minutes, seconds){
@@ -18,7 +18,8 @@ setInterval(()=>{
         minutes: date.getMinutes(),
         seconds: date.getSeconds()
     }
-    io.emit("time", time); 
+    io.emit("time", time);
+    io.emit("port", port)
 },1000);
 
 const server=  app.listen(port, ()=>{
@@ -26,7 +27,6 @@ const server=  app.listen(port, ()=>{
     let minutes = parseInt(getRandomArbitrary(0,60))
     let seconds = parseInt(getRandomArbitrary(0,60))
     console.log(`App is listening at port ${port}`)
-    console.log("Achieved")
     setTime(hours,minutes,seconds)
 });
 
@@ -40,8 +40,7 @@ app.post('/timechange',(req, res) =>{
     console.log(req.body);    
 });
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html')
-    io.emit("port", port);
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 app.post('/currentTime',(req,res)=>{
