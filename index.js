@@ -65,6 +65,11 @@ app.post('/adjust',(req,res)=>{
     res.json({message:"Hora ajustada correctamente"})*/
     console.log("date"+ date)
 })
+
+app.get('/status', (req, res) => { 
+    res.send("server ok")
+})
+
 function hourAdjust(ajust, date){
     let hour = ajust/3600000
     let minutes = (ajust%3600000)/60000
@@ -75,3 +80,5 @@ function hourAdjust(ajust, date){
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
+
+
